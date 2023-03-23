@@ -2,46 +2,23 @@
 
 window.addEventListener("load", initApp);
 
-function initApp() {
-    console.log("app is running");
+async function initApp() {
+  console.log("app is running");
 
-    const tomCruise = {
-      name: "Tom Cruise",
-      nickName: "Mav",
-      image: "https://images.paramount.tech/uri/mgid:arc:imageassetref:shared.southpark.us.en:ea6e1f8f-6864-44ad-9eb3-6740e7bbd49f?quality=0.7&gen=ntrn&legacyStatusCode=true",
-      occupation: "Hollywood actor, religious advocate",
-      age: 47,
-      voicedBy: "Trey Parker",
-      gender: "Male",
-      religion: "Scientology",
-      catchPhrase: "I'm never coming out!",
-      hairColor: "Brown",
-      schoolGrade: null,
-      episodes: "s09e12, s14e05",
-      apperances: "2",
-      firstApperance: "Trapped in the Closet, s09e12",
-    }
-
-    const tooCruise = {
-      name: "Too Cruise",
-      nickName: "Mav",
-      image: "https://images.paramount.tech/uri/mgid:arc:imageassetref:shared.southpark.us.en:ea6e1f8f-6864-44ad-9eb3-6740e7bbd49f?quality=0.7&gen=ntrn&legacyStatusCode=true",
-      occupation: "Hollywood actor, religious advocate",
-      age: 47,
-      voicedBy: "Trey Parker",
-      gender: "Male",
-      religion: "Scientology",
-      catchPhrase: "I'm never coming out!",
-      hairColor: "Brown",
-      schoolGrade: null,
-      episodes: "s09e12, s14e05",
-      apperances: "2",
-      firstApperance: "Trapped in the Closet, s09e12",
-    }
-
+  const tomCruise = await getCharacter("https://raw.githubusercontent.com/svdf18/SPobjects/main/data/tomcruise.json");
+  const tooCruise = await getCharacter("https://raw.githubusercontent.com/svdf18/SPobjects/main/data/tomcruise.json");
   showCharacter(tomCruise);
   showCharacter(tooCruise);
   
+}
+
+async function getCharacter(url) {
+  const response = await fetch(url);
+  console.log(response);
+
+  const data = await response.json();
+  console.log(data);
+  return data;
 }
 
 function showCharacter(character) {
@@ -62,8 +39,6 @@ function showCharacter(character) {
   );
 
 document.querySelector("#characters article:last-child").addEventListener("click", characterClicked);
-
-
 
 function characterClicked(){
       document.querySelector("dialog").showModal();
