@@ -61,8 +61,8 @@ function characterClicked(){
         <p><strong>Hair Color:</strong> ${character.hairColor}</p>
         <p><strong>School Grade:</strong> ${character.schoolGrade}</p>
         <p><strong>Episodes:</strong> ${character.episodes}</p>
-        <p><strong>Apperances:</strong> ${character.apperances}</p>
-        <p><strong>First Appearance:</strong> ${character.firstApperance}</p>
+        <p><strong>Apperances:</strong> ${character.appearances}</p>
+        <p><strong>First Appearance:</strong> ${character.firstAppearance}</p>
       `;
       document.querySelector("#character").appendChild(li);
     }
