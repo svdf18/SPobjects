@@ -5,23 +5,20 @@ window.addEventListener("load", initApp);
 async function initApp() {
   console.log("app is running");
 
-  const tomCruise = await getCharacter("https://raw.githubusercontent.com/svdf18/SPobjects/main/data/tomcruise.json");
-  const tooCruise = await getCharacter("https://raw.githubusercontent.com/svdf18/SPobjects/main/data/tomcruise.json");
-  showCharacter(tomCruise);
-  showCharacter(tooCruise);
-  
+  const characters = await getData();
+  characters.forEach(addCharacter);
 }
 
-async function getCharacter(url) {
-  const response = await fetch(url);
+async function getData() {
+  const response = await fetch("https://cederdorff.github.io/dat-js/05-data/southpark.json");
   console.log(response);
-
   const data = await response.json();
+  console.log("done fetching");
   console.log(data);
   return data;
 }
 
-function showCharacter(character) {
+function addCharacter(character) {
   console.log(character);
   document.querySelector("#characters").insertAdjacentHTML(
       "beforeend",
@@ -38,9 +35,9 @@ function showCharacter(character) {
       `
   );
 
-document.querySelector("#characters article:last-child").addEventListener("click", characterClicked);
+document.querySelector("#characters article:last-child").addEventListener("click", showCharacter);
 
-function characterClicked(){
+function showCharacter(){
       document.querySelector("dialog").showModal();
       let existingLi = document.querySelector("#character li");
         if (existingLi) {
