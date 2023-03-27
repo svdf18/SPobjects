@@ -34,35 +34,24 @@ function addCharacter(character) {
           </article>
       `
   );
-
 document.querySelector("#characters article:last-child").addEventListener("click", showCharacter);
 
 function showCharacter(){
-      document.querySelector("dialog").showModal();
-      let existingLi = document.querySelector("#character li");
-        if (existingLi) {
-        existingLi.remove();
-        }
-
-      const li = document.createElement('li');
-      li.innerHTML = `
-        <h2>${character.name}</h2>
-        <p><strong>Nick Name:</strong> ${character.nickName}</p>
-        <img src="${character.image}" alt="">
-        <p><strong>Occupation:</strong> ${character.occupation}</p>
-        <p><strong>Age:</strong> ${character.age}</p>
-        <p><strong>Voiced By:</strong> ${character.voicedBy}</p>
-        <p><strong>Gender:</strong> ${character.gender}</p>
-        <p><strong>Religion:</strong> ${character.religion}</p>
-        <p><strong>Catchfrase:</strong> ${character.catchPhrase}</p>
-        <p><strong>Hair Color:</strong> ${character.hairColor}</p>
-        <p><strong>School Grade:</strong> ${character.schoolGrade}</p>
-        <p><strong>Episodes:</strong> ${character.episodes}</p>
-        <p><strong>Apperances:</strong> ${character.appearances}</p>
-        <p><strong>First Appearance:</strong> ${character.firstAppearance}</p>
-      `;
-      document.querySelector("#character").appendChild(li);
-    }
+  document.querySelector("dialog").showModal();
+  document.querySelector("#dialogName").textContent = character.name;
+  document.querySelector("#dialogNickName").textContent = character.nickname;
+  document.querySelector("#dialogImg").setAttribute("src", character.image);
+  document.querySelector("#dialogOccupation").textContent = character.occupation;
+  document.querySelector("#dialogAge").textContent = character.age;
+  document.querySelector("#dialogVoicedBy").textContent = character.voicedby;
+  document.querySelector("#dialogGender").textContent = character.gender;
+  document.querySelector("#dialogReligion").textContent = character.religion;
+  document.querySelector("#dialogCatchPhrase").textContent = character.catchPhrase;
+  // document.querySelector("#dialogHairColor").textContent = character.hairColor;
+  // document.querySelector("#dialogSchoolGrade").textContent = character.schoolGrade;
+  document.querySelector("#dialogEpisodes").textContent = character.episodes;
+  document.querySelector("#dialogAppearances").textContent = character.appearances;
+  // document.querySelector("#dialogFirstAppearance").textContent = character.firstAppearance;
 
     closeDialog();
       
@@ -75,4 +64,4 @@ dialog.addEventListener("click", (event) => {
     dialog.close();
   }
 });
-}
+}}
