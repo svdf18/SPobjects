@@ -47,11 +47,11 @@ function showCharacter(){
   document.querySelector("#dialogGender").textContent = character.gender;
   document.querySelector("#dialogReligion").textContent = character.religion;
   document.querySelector("#dialogCatchPhrase").textContent = character.catchPhrase;
-  // document.querySelector("#dialogHairColor").textContent = character.hairColor;
-  // document.querySelector("#dialogSchoolGrade").textContent = character.schoolGrade;
+  document.querySelector("#dialogHairColor").textContent = character.hairColor;
+  document.querySelector("#dialogSchoolGrade").textContent = character.schoolGrade;
   document.querySelector("#dialogEpisodes").textContent = character.episodes;
   document.querySelector("#dialogAppearances").textContent = character.appearances;
-  // document.querySelector("#dialogFirstAppearance").textContent = character.firstAppearance;
+  document.querySelector("#dialogFirstAppearance").textContent = character.firstAppearance;
 
     closeDialog();
       

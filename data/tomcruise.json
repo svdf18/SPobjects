@@ -1,6 +1,6 @@
 {
     "name": "Tom Cruise",
-    "nickName": "Mav",
+    "nickname": "Mav",
     "image": "https://images.paramount.tech/uri/mgid:arc:imageassetref:shared.southpark.us.en:ea6e1f8f-6864-44ad-9eb3-6740e7bbd49f?quality=0.7&gen=ntrn&legacyStatusCode=true",
     "occupation": "Hollywood actor, religious advocate",
     "age": 47,
@@ -9,8 +9,8 @@
     "religion": "Scientology",
     "catchPhrase": "I'm never coming out!",
     "hairColor": "Brown",
-    "schoolGrade": "",
-    "episodes": "s09e12, s14e05",
-    "appearances": "2",
-    "firstAppearance": "Trapped in the Closet, s09e12"
+    "schoolGrade": null,
+    "episodes": "S09E12, S14E05",
+    "appearances": 2,
+    "firstAppearance": "S09E12"
 }
