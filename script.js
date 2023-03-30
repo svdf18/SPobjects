@@ -93,7 +93,7 @@ function generateDescription(character) {
   if (character.appearances == 1) {
     specificDescription = `${character.name} was not offered additional appearances.`;
   } else if (character.appearances > 1) {
-    specificDescription = `${character.name} Appeared in ${character.appearances} episodes.`;
+    specificDescription = `In all, ${character.name} appeared in ${character.appearances} episodes.`;
   } else if (character.appearances == null) {
     specificDescription = "faulty JSON object ¯\_(ツ)_/¯ "
   }
@@ -105,7 +105,7 @@ function generateDescription(character) {
 
 function detectUserPreference() {
   const modeFromLocalStorage = readUserColorMode();
-  
+
 
   if(modeFromLocalStorage) {
     changeMode(modeFromLocalStorage);

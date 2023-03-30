@@ -1,1 +1,3 @@
-// link til Github Pages //
+// link to Github Pages //
+
+https://svdf18.github.io/SPobjects/
