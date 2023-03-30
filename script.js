@@ -6,7 +6,11 @@ async function initApp() {
   console.log("app is running");
 
   const characters = await getData();
-  characters.forEach(addCharacter);
+
+  for (const character of characters) {
+    addCharacter(character)
+  }
+  // characters.forEach(addCharacter);
 }
 
 async function getData() {
@@ -34,24 +38,29 @@ function addCharacter(character) {
           </article>
       `
   );
-document.querySelector("#characters article:last-child").addEventListener("click", showCharacter);
+  
+document.querySelector("#characters article:last-child").addEventListener("click", clickCharacter);
 
-function showCharacter(){
+function clickCharacter(){
+  showCharacter(character);
+}
+}
+
+function showCharacter(character){
   document.querySelector("dialog").showModal();
   document.querySelector("#dialogName").textContent = character.name;
   document.querySelector("#dialogNickName").textContent = character.nickname;
   document.querySelector("#dialogImg").setAttribute("src", character.image);
   document.querySelector("#dialogOccupation").textContent = character.occupation;
   document.querySelector("#dialogAge").textContent = character.age;
-  document.querySelector("#dialogVoicedBy").textContent = character.voicedby;
+  document.querySelector("#dialogVoicedBy").textContent = character.voicedBy;
   document.querySelector("#dialogGender").textContent = character.gender;
   document.querySelector("#dialogReligion").textContent = character.religion;
   document.querySelector("#dialogCatchPhrase").textContent = character.catchPhrase;
   document.querySelector("#dialogHairColor").textContent = character.hairColor;
   document.querySelector("#dialogSchoolGrade").textContent = character.schoolGrade;
   document.querySelector("#dialogEpisodes").textContent = character.episodes;
-  document.querySelector("#dialogAppearances").textContent = character.appearances;
-  document.querySelector("#dialogFirstAppearance").textContent = character.firstAppearance;
+  document.querySelector("#dialogCharacterDescription").textContent = generateDescription(character);;
 
     closeDialog();
       
@@ -64,4 +73,21 @@ dialog.addEventListener("click", (event) => {
     dialog.close();
   }
 });
-}}
+}
+
+function generateDescription(character) {
+  let generalDescription = `${character.name} first appeared in South Park season ${character.firstAppearance.slice(1, 3)}, episode ${character.firstAppearance.slice(4)}. `;
+  let specificDescription = "";
+
+  if (character.appearances == 1) {
+    specificDescription = `${character.name} was not offered additional appearances.`;
+  } else if (character.appearances > 1) {
+    specificDescription = `${character.name} further appeared in ${character.appearances} episodes.`;
+  } else if (character.appearances == null) {
+    specificDescription = "faulty JSON object ¯\_(ツ)_/¯ "
+  }
+
+  let generatedDescription = generalDescription + specificDescription;
+  return generatedDescription;
+
+}
