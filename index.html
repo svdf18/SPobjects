@@ -10,6 +10,12 @@
 <body>
     <header>
         <h1>South Park Characters</h1>
+        <label for="select-color-mode">Mode:
+            <select id="select-color-mode">
+                <option value="light" selected>Light</option>
+                <option value="dark">Dark</option>
+            </select>
+        </label>
     </header>
     <main>
         <section id="characters" class="grid-container"></section>
@@ -17,8 +23,8 @@
     <dialog id="dialog">
         <ul>
         <h2 id="dialogName"></h2>
+            <img id="dialogImg" src="${character.image}">
             <li><strong>Nick name:</strong> <span id="dialogNickName"></span></li>
-			<img id="dialogImg" src="${character.image}">
             <li><strong>Occupation: </strong> <span id="dialogOccupation"></span></li>
             <li><strong>Age: </strong><span id="dialogAge"></span></li>
             <li><strong>Voiced by: </strong> <span id="dialogVoicedBy"></span></li>
@@ -31,6 +37,9 @@
             <li><strong>Description: </strong> <span id="dialogCharacterDescription"></span></li>                  
         </ul>
     </dialog>
+    <footer>
+        <h3>Simon Formann - DAT.js 2023</h3>
+    </footer>
 <script src="script.js"></script>
 </body>
 </html>

@@ -5,21 +5,30 @@ window.addEventListener("load", initApp);
 async function initApp() {
   console.log("app is running");
 
+  document.querySelector("#select-color-mode").addEventListener("change", modeSelected);
+  detectUserPreference();
+  readUserColorMode();
+
   const characters = await getData();
+
+  characters.sort(sortByName);
 
   for (const character of characters) {
     addCharacter(character)
   }
+
+  // forEach works as well:
   // characters.forEach(addCharacter);
 }
 
 async function getData() {
   const response = await fetch("https://cederdorff.github.io/dat-js/05-data/southpark.json");
-  console.log(response);
   const data = await response.json();
-  console.log("done fetching");
-  console.log(data);
   return data;
+}
+
+function sortByName(characterA, characterB) {
+  return characterA.name.localeCompare(characterB.name)
 }
 
 function addCharacter(character) {
@@ -66,6 +75,8 @@ function showCharacter(character){
       
 }
 
+// Alternative to close btn in html - instead add click where target is outside dialog
+
 function closeDialog(){
 const dialog = document.querySelector("dialog");
 dialog.addEventListener("click", (event) => {
@@ -82,7 +93,7 @@ function generateDescription(character) {
   if (character.appearances == 1) {
     specificDescription = `${character.name} was not offered additional appearances.`;
   } else if (character.appearances > 1) {
-    specificDescription = `${character.name} further appeared in ${character.appearances} episodes.`;
+    specificDescription = `${character.name} Appeared in ${character.appearances} episodes.`;
   } else if (character.appearances == null) {
     specificDescription = "faulty JSON object ¯\_(ツ)_/¯ "
   }
@@ -91,3 +102,43 @@ function generateDescription(character) {
   return generatedDescription;
 
 }
+
+function detectUserPreference() {
+  const modeFromLocalStorage = readUserColorMode();
+  
+
+  if(modeFromLocalStorage) {
+    changeMode(modeFromLocalStorage);
+    document.querySelector("#select-color-mode").value = modeFromLocalStorage;
+  }
+
+  changeMode(modeFromLocalStorage);
+  document.querySelector("#select-color-mode").value = modeFromLocalStorage;
+}
+
+function readUserColorMode() {
+  const userColorMode = localStorage.getItem("userColorMode");
+  return userColorMode;
+}
+
+function saveUserColorMode(mode) {
+  localStorage.setItem("userColorMode", mode);
+
+}
+
+// modeSelected called when #select-color-mode changes value
+function modeSelected() {
+  const selectedColorMode = this.value;
+  changeMode(selectedColorMode);
+  saveUserColorMode(selectedColorMode);
+}
+
+function changeMode(mode) {
+  console.log(mode);
+
+  if (mode == "dark") {
+      document.querySelector(":root").classList.add("dark-mode");
+  } else
+      document.querySelector(":root").classList.remove("dark-mode");
+  }
+
